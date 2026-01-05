@@ -6,7 +6,11 @@
 
 body {
   font-family: system-ui, Arial, sans-serif;
+<<<<<<< HEAD
   color: black;
+=======
+  color: white;
+>>>>>>> 1fc42651ee7fe630a34ee9ef4dfbeab8eabed7c6
   height: 100vh;
   overflow: hidden;
 }
