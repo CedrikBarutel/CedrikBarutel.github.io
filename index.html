@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cedrik Barutel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSAP Demo</title>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <!-- three.js -->
-  <script src="https://unpkg.com/three@0.164.1/build/three.min.js"></script>
-
-
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <h1> Je fais un test avec des animations </h1>
-    
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-    <!-- And put your own code after - any GSAP code you write needs to have access to the library -->
-    <script src="script.js"></script>
-    <div class="box green"></div>
+
+  <div class="container">
+    <h1 class="title">GSAP Demo ✨</h1>
+
+    <div class="box"></div>
+
+    <button id="btn">Animate Again</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
 
