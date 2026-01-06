@@ -6,7 +6,7 @@ body {
   display:flex;
   justify-content:center;
   align-content:center;
-  background:black;
+  background:#faf0e6;
 }
 
 .container {
@@ -38,3 +38,4 @@ svg.demo {
   stroke-width:10px;
   stroke: #191970;
 }
+
