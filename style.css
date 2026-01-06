@@ -12,6 +12,7 @@ body {
   z-index:-1;
   overflow:hidden;
   background:#faf0e6; /* dark base color */
+  margin: 0 auto;
 }
 
 /* Page content */
@@ -22,14 +23,14 @@ body {
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:0px;
+  margin: 0 auto;
 }
 
 
 
 svg.demo {
-  border:0px solid #444;
-  width:80%;
+  width:100%;
   fill:none;
   min-width:380px;
   background:#faf0e6;
@@ -37,7 +38,24 @@ svg.demo {
 
 .demo path {
   fill:none;
-  stroke-width:10px;
+  stroke-width:8px;
   stroke: #191970;
 }
 
+
+/* Navigation */
+.nav {
+}
+
+p {
+  margin: 0 auto;
+}
+
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  color: #191970;
+  margin-top: 40px;
+}
