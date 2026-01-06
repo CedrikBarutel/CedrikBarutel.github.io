@@ -1,28 +1,9 @@
 
-#faf0e6
-
-
 body {
   display:flex;
   justify-content:center;
   align-content:center;
   background:#faf0e6;
-}
-
-.container {
-  text-align: center;
-}
-
-.title {
-  margin-bottom: 30px;
-}
-
-.box {
-  width: 120px;
-  height: 120px;
-  background: white;
-  border-radius: 20px;
-  margin: 0 auto 30px;
 }
 
 svg.demo {
@@ -31,7 +12,6 @@ svg.demo {
   min-width:380px;
   background:#faf0e6;
 }
-
 
 .demo path {
   fill:none;
