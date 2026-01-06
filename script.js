@@ -5,5 +5,6 @@ gsap.from(".box", {
   duration: 1.5,
   rotation: 360,
   ease: "bounce.out"
+  repeat:-1
 });
 
