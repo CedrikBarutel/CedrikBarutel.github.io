@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GSAP Demo</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSAP Test</title>
 
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <link rel="stylesheet" href="style.css" />
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#222;
+    color:white;
+    font-family:sans-serif;
+  }
+  .box{
+    width:120px;
+    height:120px;
+    background:#4caf50;
+    border-radius:20px;
+  }
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1 class="title">GSAP Demo ✨</h1>
+<div class="box"></div>
 
-    <div class="box"></div>
+<script>
+gsap.from(".box", {
+  y: -200,
+  opacity: 0,
+  duration: 1.5,
+  rotation: 360,
+  ease: "bounce.out"
+});
+</script>
 
-    <button id="btn">Animate Again</button>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
 
