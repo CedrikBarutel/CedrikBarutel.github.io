@@ -11,6 +11,10 @@ body {
   overflow: hidden;
 }
 
+.box {
+  display: block;
+}
+
 #bg {
   position: fixed;
   top: 0;
