@@ -42,6 +42,19 @@ svg.demo {
   stroke: #191970;
 }
 
+.demo #hand1 {
+  fill:none;
+  stroke-width:5px;
+  stroke: #ff4500;
+}
+
+.demo #hand2 {
+  fill:none;
+  stroke-width:5px;
+  stroke: #ff4500;
+}
+
+
 
 /* Navigation */
 .nav {
