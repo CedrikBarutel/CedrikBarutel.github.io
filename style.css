@@ -1,4 +1,3 @@
-
 body {
   display:flex;
   justify-content:center;
@@ -7,8 +6,9 @@ body {
 }
 
 svg.demo {
-  border:1px solid #444;
+  border:0px solid #444;
   width:80%;
+  fill:none;
   min-width:380px;
   background:#faf0e6;
 }
