@@ -5,9 +5,11 @@
 }
 
 body {
-  font-family: system-ui, Arial, sans-serif;
-  color: black;
-  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
   overflow: hidden;
 }
 
