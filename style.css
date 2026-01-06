@@ -5,15 +5,13 @@ body {
   background:#faf0e6;
 }
 
-
-
 /* Background container ALWAYS behind */
 .bg{
   position:fixed;
   inset:0;
   z-index:-1;
   overflow:hidden;
-  background:#0f172a; /* dark base color */
+  background:#faf0e6; /* dark base color */
 }
 
 /* Page content */
