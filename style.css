@@ -5,17 +5,6 @@ body {
   background:#faf0e6;
 }
 
-.view {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.view.active {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* Background container ALWAYS behind */
 .bg{
@@ -75,9 +64,28 @@ svg.demo {
 
 
 
-/* Navigation */
-.nav {
-z-index:100;
+.view {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* inactive */
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.view.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Navigation au-dessus */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
 }
 
 p {
