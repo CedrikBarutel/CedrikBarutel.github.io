@@ -11,31 +11,37 @@
 
 <title>TEST CEDRIK BARUTEL</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js"></script>
+
 <link rel="stylesheet" href="style.css"/>
 </head>
 
 
 <body>
-<div class="content">
-    <h1>TEST TITLE</h1>
-    <p>test subtitle more long like a sentence of description</p>
 
-  <nav class="nav">
-    <ul>
-      <li><a href="#about">Bio</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#pubs">Publications</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<section id="home" class="view active">
+      <h1>TEST PERSONAL WEBSITE</h1>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+      </nav>
+      <p>Welcome to my homepage!</p>
+    </section>
 
+    <section id="about" class="view">
+      <h1>About Me</h1>
+      <p>Some info about me</p>
+    </section>
+
+    <section id="work" class="view">
+      <h1>My Work</h1>
+      <p>Portfolio or projects</p>
+    </section>
   
  <!-- BACKGROUND -->
-  <div class="bg"
-  viewBox="0 0 800 500"
-  preserveAspectRatio="xMidYMid slice"
-  >
+  <div class="bg">
       <svg class="demo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"  xmlns:bx="https://boxy-svg.com">
         <path id="path1" d="M 114.553 508.946 L 160.367 477.8591666666667 C 206.181 446.77233333333334 297.809 384.5986666666667 356.1603333333333 349.77433333333335 C 414.5116666666667 314.95 439.58633333333336 307.47499999999997 452.1236666666667 303.7375 L 464.661 300" />
 
@@ -57,13 +63,7 @@
 
     </svg>    
   </div> 
-  
-  
-  
-  <footer class="footer">
-    <p>© 2026 Test Cedrik Barutel </p>
-  </footer>
- 
+
 </div>  
  <script src="script.js"></script> 
 </body>

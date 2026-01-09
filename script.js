@@ -1,3 +1,14 @@
+function showView(id) {
+  document.querySelectorAll(".view").forEach(v =>
+    v.classList.toggle("active", "#" + v.id === id)
+  );
+}
+
+window.addEventListener("hashchange", () => {
+  showView(location.hash || "#home");
+});
+
+showView(location.hash || "#home");
 
 gsap.to("#path1",
 {attr:{
