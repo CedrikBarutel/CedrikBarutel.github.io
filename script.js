@@ -4,10 +4,12 @@ function showView(id) {
   );
 }
 
+// Détecter le hash change
 window.addEventListener("hashchange", () => {
   showView(location.hash || "#home");
 });
 
+// Initialisation au chargement
 showView(location.hash || "#home");
 
 gsap.to("#path1",
