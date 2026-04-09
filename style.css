@@ -2,6 +2,7 @@ body {
   display:flex;
   justify-content:center;
   align-content:center;
+  
   background:#faf0e6;
 }
 
@@ -20,7 +21,10 @@ body {
 
 section {
   min-height: 100vh;
-  padding: 10vh 10vw;
+  color: #191970;
+  margin: 0px 100px 0px 400px;
+  padding: 0px 0px 3000px 0px;
+
 }
 
 /* Page content */
@@ -32,7 +36,12 @@ section {
   align-items:center;
   text-align:center;
   padding:0px;
-  margin: 0 auto;
+  margin: 200 auto;
+}
+
+h3 {
+font-size: 22px;
+
 }
 
 
@@ -75,6 +84,10 @@ svg.demo {
   pointer-events: none; /* inactive */
   padding: 40px;
   box-sizing: border-box;
+
+  transition:
+    opacity 1s ease,
+    visibility 0s linear 1s;
 }
 
 .view.active {
@@ -84,18 +97,50 @@ svg.demo {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transition:
+    opacity 1s ease,
+    visibility 0s;
+}
+
+
+ulnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ulnav li:first-child {
+  margin-bottom: 60px;
 }
 
 /* Navigation au-dessus */
 nav {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 0px;
+  left: 0px;
   z-index: 10;
+  font-size: 46px;
+  margin: 0px;
+  padding: 40px 100px 20000px 100px;
+  background-color: #faf0e6;
+  border-right: 6px solid #191970;   /* inner thick line */
 }
 
+nav::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 6px;      /* distance from first line */
+  width: 10px;        /* thickness of second line */
+  height: 100%;
+  background: #191970;
+}
+
+
 p {
-  margin: 0 auto;
+  margin: 12px;
+  font-size: 22px
 }
 
 
