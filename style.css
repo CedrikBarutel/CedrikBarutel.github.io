@@ -96,8 +96,8 @@ svg.demo {
   box-sizing: border-box;
 
   transition:
-    opacity 1s ease,
-    visibility 0s linear 1s;
+    opacity 0.5s ease,
+    visibility 0s linear 0.5s;
 }
 
 .view.active {
@@ -108,7 +108,7 @@ svg.demo {
   visibility: visible;
   pointer-events: auto;
   transition:
-    opacity 1s ease,
+    opacity 0.5s ease,
     visibility 0s;
 }
 
@@ -159,6 +159,8 @@ p {
   margin: 20px;
   font-size: 22px;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 
