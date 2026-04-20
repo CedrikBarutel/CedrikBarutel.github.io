@@ -162,6 +162,15 @@ p {
 }
 
 
+.about {
+  display: flex;
+  gap: 20px;
+}
+
+.about p {
+  text-align: justify;
+}
+
 /* Footer */
 .footer {
   text-align: center;
