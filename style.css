@@ -28,7 +28,7 @@ body {
 }
 
 section {
-  --content-left: clamp(300px, 26vw, 430px);
+  --content-left: clamp(230px, 22vw, 320px);
   --content-right: 60px;
   min-height: 100vh;
   color: #191970;
@@ -132,7 +132,7 @@ ulnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: clamp(160px, 16vw, 220px);
+  width: max-content;
 }
 
 ulnav li:first-child {
@@ -170,7 +170,7 @@ nav {
   min-height: 100vh;
   font-size: clamp(34px, 4vw, 46px);
   margin: 0px;
-  padding: 40px clamp(40px, 6vw, 50px);
+  padding: 40px clamp(30px, 4.5vw, 42px);
   background-color: #faf0e6;
   border-right: 6px solid #191970;   /* inner thick line */
 }
@@ -189,7 +189,7 @@ nav::after {
 p {
   margin: 20px 0;
   font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.5;
+  line-height: 1.0;
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
@@ -215,7 +215,7 @@ p {
 
 @media (max-width: 900px) {
   section {
-    --content-left: clamp(220px, 34vw, 300px);
+    --content-left: clamp(190px, 30vw, 250px);
     --content-right: 24px;
     width: min(760px, calc(100% - var(--content-left) - var(--content-right)));
     margin: 0 var(--content-right) 0 var(--content-left);
@@ -224,11 +224,11 @@ p {
 
   nav {
     font-size: clamp(28px, 5vw, 36px);
-    padding: 32px clamp(28px, 5vw, 52px);
+    padding: 32px clamp(26px, 4.5vw, 38px);
   }
 
   ulnav {
-    width: clamp(130px, 22vw, 180px);
+    width: max-content;
     gap: 14px;
   }
 
@@ -320,4 +320,14 @@ p {
     width: min(100% - 24px, 620px);
     padding-top: 122px;
   }
+}
+
+
+.animation-frame {
+  width: 100%;
+  max-width: 700px;
+  height: 235px;
+  border: none;
+  display: block;
+  margin: 0.5rem auto 0.25rem auto;
 }
