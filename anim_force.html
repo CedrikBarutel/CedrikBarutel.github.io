@@ -12,7 +12,7 @@
     }
 
     .animation-frame {
-      width: min(96vw, 1400px);
+      width: min(96vw, 150mm);
       margin: 0 auto;
     }
 
@@ -45,9 +45,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="200mm"
+   width="150mm"
    height="38mm"
-   viewBox="0 0 200 38"
+   viewBox="0 0 150 38"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
@@ -1238,6 +1238,64 @@
     const spark4 = addSparkCluster('anim-spark-blob-2', 181.0, 29.1, 196);
     const sparks = [spark1, spark2, spark3, spark4].filter(Boolean);
 
+    function makePanelGroup(id, ids, dx = 0) {
+      let group = byId(id);
+      if (!group) {
+        group = document.createElementNS(NS, 'g');
+        group.setAttribute('id', id);
+        group.setAttribute('class', 'force-panel');
+        layer.appendChild(group);
+      }
+      group.setAttribute('transform', `translate(${dx} 0)`);
+      for (const elementId of ids) {
+        const el = byId(elementId);
+        if (el && el !== group && el.parentNode !== group) {
+          group.appendChild(el);
+        }
+      }
+      return group;
+    }
+
+    const entropicPanel = makePanelGroup('force-panel-entropic', [
+      'text1',
+      'anim-entropic-top-filament', 'anim-entropic-bottom-filament',
+      'anim-entropic-blob', 'path11',
+      'anim-entropic-dumbbell-1', 'anim-entropic-dumbbell-2', 'anim-entropic-dumbbell-3',
+      'path13-6-5-3-7-4-7', 'path13-6-5-3-7-6-9-2',
+      'path13-6-5-3-7-4-7-4', 'path13-6-5-3-7-6-9-2-9'
+    ], 43.5);
+
+    const activePanel = makePanelGroup('force-panel-active', [
+      'text1-5',
+      'anim-active-top-filament', 'anim-active-bottom-filament',
+      'anim-active-blob', 'path11-7', 'anim-active-dumbbell',
+      'anim-atp-word', 'anim-adp-word',
+      'path13-6-5-3-7', 'path13-6-5-3-7-6',
+      'path13-6-5-3-7-4', 'path13-6-5-3-7-6-9'
+    ], -21.9);
+
+    const frictionPanel = makePanelGroup('force-panel-friction', [
+      'text1-5-7',
+      'anim-friction-top-filament', 'anim-friction-bottom-filament',
+      'anim-friction-blob', 'path11-7-8', 'anim-friction-dumbbell',
+      'anim-spark-existing-1', 'anim-spark-existing-2',
+      'anim-spark-blob-1', 'anim-spark-blob-2',
+      'path13-6-5-3-7-9', 'path13-6-5-3-7-6-7',
+      'path13-6-5-3-7-9-9', 'path13-6-5-3-7-6-7-4'
+    ], -90.7);
+
+    const panels = [entropicPanel, activePanel, frictionPanel].filter(Boolean);
+
+    function localPhase(globalPhase, slot) {
+      return clamp(globalPhase * 3 - slot, 0, 1);
+    }
+
+    function panelOpacity(globalPhase, slot) {
+      const x = globalPhase * 3 - slot;
+      if (x < 0 || x > 1) return 0;
+      return smoothstep(x / 0.15) * (1 - smoothstep((x - 0.82) / 0.16));
+    }
+
     const allJitterObjects = [
       ...entropicDumbbells,
       ...activeDumbbells,
@@ -1281,22 +1339,22 @@
     const entropicDumbbellMaxDx = [0.58, 3.10, 8.40];
 
     function animate(timeMs) {
-      const duration = 6600;
+      const duration = 9600;
       const t = timeMs / 1000;
       const p = (timeMs % duration) / duration;
+      const pe = localPhase(p, 0);
+      const pa = localPhase(p, 1);
+      const pf = localPhase(p, 2);
 
-      const move = smoothstep((p - 0.08) / 0.68);
-      const fadeIn = smoothstep(p / 0.065);
-      const fadeOut = 1 - smoothstep((p - 0.86) / 0.12);
-      const globalOpacity = fadeIn * fadeOut;
-      layer.setAttribute('opacity', globalOpacity.toFixed(3));
-      // path1-6-0 (the top filament in the rightmost sketch) is outside #layer1 in the
-      // original Inkscape SVG, so fade its animation wrapper explicitly as well.
-      setOpacity(frictionTop, globalOpacity);
+      layer.setAttribute('opacity', '1');
+      setOpacity(entropicPanel, panelOpacity(p, 0));
+      setOpacity(activePanel, panelOpacity(p, 1));
+      setOpacity(frictionPanel, panelOpacity(p, 2));
 
       // Entropic panel: filaments move inward, crosslinkers spread within the left-side overlap,
       // and blob density decreases as its width increases.
-      const entropicInward = 5.8 * move;
+      const moveE = smoothstep((pe - 0.08) / 0.68);
+      const entropicInward = 5.8 * moveE;
       setTranslate(entropicTop, entropicInward, 0);
       setTranslate(entropicBottom, -entropicInward, 0);
 
@@ -1305,8 +1363,8 @@
         const j = obj ? jitterFor(obj, t) : { x: 0, y: 0 };
         const spread = entropicSpread[i] || { dx: 0, dy: 0 };
         const maxDx = entropicDumbbellMaxDx[i] ?? 0.58;
-        const dx = clamp(spread.dx * move + j.x, -12.0, maxDx);
-        const dy = spread.dy * move + j.y;
+        const dx = clamp(spread.dx * moveE + j.x, -12.0, maxDx);
+        const dy = spread.dy * moveE + j.y;
         setTranslate(el, dx, dy);
       });
 
@@ -1319,15 +1377,15 @@
         // contour does not protrude beyond the two inward-moving filaments.
         const anchorX = 31.48;
         const anchorY = 27.2;
-        const sx = 0.84 + 0.36 * move;
-        const sy = 1.02 - 0.08 * move;
+        const sx = 0.84 + 0.36 * moveE;
+        const sy = 1.02 - 0.08 * moveE;
         const boundedJx = clamp(ej.x, -0.10, 0.10);
         const boundedJy = clamp(ej.y, -0.08, 0.08);
         entropicBlob.setAttribute(
           'transform',
           `translate(${boundedJx.toFixed(3)} ${boundedJy.toFixed(3)}) translate(${anchorX} ${anchorY}) scale(${sx.toFixed(3)} ${sy.toFixed(3)}) translate(${-anchorX} ${-anchorY})`
         );
-        setOpacity(entropicBlob, 1.0 - 0.52 * move);
+        setOpacity(entropicBlob, 1.0 - 0.52 * moveE);
       }
       setBlobFilter(
         'blob-entropic-shape-change',
@@ -1337,9 +1395,10 @@
 
       // Active panel: outward filament sliding, idle crosslinker/blob fluctuations,
       // and ATP conversion into ADP.
-      const outward = 6.2 * move;
-      setTranslate(activeTop, -outward, 0);
-      setTranslate(activeBottom, outward, 0);
+      const moveA = smoothstep((pa - 0.08) / 0.68);
+      const activeOutward = 6.2 * moveA;
+      setTranslate(activeTop, -activeOutward, 0);
+      setTranslate(activeBottom, activeOutward, 0);
 
       activeDumbbells.forEach((el) => {
         const obj = allJitterObjects.find(o => o.el === el);
@@ -1355,7 +1414,7 @@
         1.7 + 1.25 * (0.5 + 0.5 * Math.sin(t * 1.6 + 0.9))
       );
 
-      const chem = smoothstep((p - 0.12) / 0.55);
+      const chem = smoothstep((pa - 0.12) / 0.55);
       if (atp) {
         atp.setAttribute('transform', `translate(${(16.65 * chem).toFixed(3)} ${(17.70 * chem).toFixed(3)})`);
         setOpacity(atp, 1 - chem);
@@ -1365,8 +1424,10 @@
       }
 
       // Friction panel: outward sliding and flashing sparks around dumbbell/blob.
-      setTranslate(frictionTop, -outward, 0);
-      setTranslate(frictionBottom, outward, 0);
+      const moveF = smoothstep((pf - 0.08) / 0.68);
+      const frictionOutward = 6.2 * moveF;
+      setTranslate(frictionTop, -frictionOutward, 0);
+      setTranslate(frictionBottom, frictionOutward, 0);
 
       frictionDumbbells.forEach((el) => {
         const obj = allJitterObjects.find(o => o.el === el);
@@ -1383,7 +1444,7 @@
       );
 
       sparks.forEach((s, i) => {
-        const flicker = trianglePulse(p * 6.0 + i * 0.23) * (0.65 + 0.35 * Math.sin(t * 7.0 + i));
+        const flicker = trianglePulse(pf * 6.0 + i * 0.23) * (0.65 + 0.35 * Math.sin(t * 7.0 + i));
         setOpacity(s, 0.15 + 0.85 * clamp(flicker));
         if (s.id.startsWith('anim-spark-blob')) {
           const shakeX = 0.10 * Math.sin(t * 12.0 + i);
@@ -1406,7 +1467,9 @@
       requestAnimationFrame(animate);
     } else {
       layer.setAttribute('opacity', '1');
-      setOpacity(frictionTop, 1);
+      setOpacity(entropicPanel, 1);
+      setOpacity(activePanel, 0);
+      setOpacity(frictionPanel, 0);
     }
   </script>
 </body>
