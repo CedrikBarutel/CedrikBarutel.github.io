@@ -17,10 +17,14 @@
     }
 
     svg {
-      width: 100%;
+      /* Uniform visual scaling: keep the original SVG/animation unchanged,
+         but render the whole animation 1.5× larger. */
+      width: 150%;
+      max-width: none;
       height: auto;
       display: block;
       overflow: visible;
+      margin-left: -25%;
     }
 
     #layer1 {
@@ -1340,7 +1344,7 @@
 
     function animate(timeMs) {
       const duration = 9600;
-      const t = timeMs / 1000;
+      const t = 0.5*timeMs / 1000;
       const p = (timeMs % duration) / duration;
       const pe = localPhase(p, 0);
       const pa = localPhase(p, 1);
